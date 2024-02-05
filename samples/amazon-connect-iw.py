@@ -38,6 +38,8 @@ def get_recording_object_key(contact_id: str, disconnectTimestamp: str):
     year = disconnect_datetime.year
     month = str(disconnect_datetime.month).zfill(2)
     day = str(disconnect_datetime.day).zfill(2)
+
+    # NOTE: 環境によっては、"connect", "CallRecordings" のパスが異なる場合があるので、適宜修正してください
     prefix = f"connect/{INSTANCE_NAME}/CallRecordings/{year}/{month}/{day}/{contact_id}"
     print("searching by prefix: " + prefix)
     res = s3.meta.client.list_objects_v2(Bucket=S3_BUCKET, Prefix=prefix)
