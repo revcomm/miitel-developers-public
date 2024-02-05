@@ -57,9 +57,9 @@ def create_call_history(
         "call_data": [
             {
                 "audio_file_type": "wav",
-                "event_type": "OUTGOING_CALL"
-                if method == "OUTBOUND"
-                else "INCOMING_CALL",
+                "event_type": (
+                    "OUTGOING_CALL" if method == "OUTBOUND" else "INCOMING_CALL"
+                ),
                 "call_data_id": contact_id,
                 "group_name": None,
                 "queue_name": None,
@@ -97,7 +97,6 @@ def lambda_handler(event, context):
     detail = event["detail"]
     contact_id = detail["contactId"]
     agent_number = detail["tags"]["aws:connect:systemEndpoint"]
-    initiation_method = detail["initiationMethod"]
     customer_number = detail["tags"]["customerNumber"]
     disconnect_timestamp = detail["disconnectTimestamp"]
     recording_object_key = get_recording_object_key(contact_id, disconnect_timestamp)
