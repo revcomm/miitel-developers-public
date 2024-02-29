@@ -1,0 +1,37 @@
+{
+    "call_data": [
+        {
+            "call_data_id": "calldatatest0003",
+            "audio_file_type": "mp3",
+            "event_type": "OUTGOING_CALL",
+            "group_name": "",
+            "queue_name": "",
+            "call_starts_at": "2023-11-27T15:22:33+0900",
+            "call_answered_at": "2023-11-27T15:22:40+0900",
+            "call_ends_at": "2023-11-27T15:36:33+0900",
+            "circuit_number": "05011112222",
+            "audio_channel_type": "MONAURAL",
+            "participants": [
+                {
+                    "type": "FROM",
+                    "stereo_lr": "left",
+                    "miitel_user_id": "00000000-0000-0000-0000-000000000000",
+                    "number": "05011112222",
+                    "name": "User199"
+                },
+                {
+                    "type": "TO",
+                    "stereo_lr": "right",
+                    "miitel_user_id": null,
+                    "number": "05022223333",
+                    "name": "いろは株式会社"
+                }
+            ],
+            "tags": [
+                {
+                    "value": "応対メモテスト"
+                }
+            ]
+        }
+    ]
+}

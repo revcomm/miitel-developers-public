@@ -1,0 +1,43 @@
+{
+    "video": {
+        "id": "018c23b3-52bc-d32d-d8e6-162491d7ee60",
+        "tenant_code": "matsushita-test",
+        "title": "call_recording_987cf464-2988-43c3-aa2d-cee744368ee4_20230120023041 (1)",
+        "platform": "user_uploads",
+        "starts_at": "2023-12-01T04:45:00+00:00",
+        "ends_at": "2023-12-01T05:01:45.480000+00:00",
+        "access_permission": "EVERYONE",
+        "host": {
+            "user_name": "松下 正洋",
+            "login_id": "masahiro.matsushita@revcomm.co.jp"
+        },
+        "analysis": {
+            "overlap_count": null,
+            "silence_count": 27
+        },
+        "participants": [
+            {
+                "id": "018c23bf-394d-a6fe-2a73-f9e5143dd905",
+                "display_name": "guest01",
+                "miitel_user_name": null,
+                "login_id": null
+            },
+            {
+                "id": "ad1a0191-5780-4912-a68a-c4b0705824d3",
+                "display_name": "guest02",
+                "miitel_user_name": null,
+                "login_id": null
+            },
+            {
+                "id": "018c23b3-5565-8e41-554d-416458cbbeb8",
+                "display_name": "松下 正洋",
+                "miitel_user_name": "松下 正洋",
+                "login_id": "masahiro.matsushita@revcomm.co.jp"
+            }
+        ],
+        "speech_recognition": {
+            "raw": "0:00 (guest01) そうだよです。コールビングはコールエル。\n0:08 (guest01) お世話になってす。株式会社レブコムの松下と申します。\n0:08 (guest02) サカモトです。お世話になります。",
+            "summary": "0:08 (guest01) お世話になってす。株式会社レブコムの松下と申します。\n0:12 (guest02) サカモトです。お世話になります。"
+        }
+    }
+}
