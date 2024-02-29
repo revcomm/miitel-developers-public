@@ -1,0 +1,180 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome",
+    "definitions": {
+        "Welcome": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "call_data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CallData"
+                    }
+                }
+            },
+            "required": [
+                "call_data"
+            ],
+            "title": "Welcome"
+        },
+        "CallData": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "call_data_id": {
+                    "type": "string"
+                },
+                "audio_file_type": {
+                    "type": "string",
+                    "enum": [
+                        "mp3",
+                        "m4a",
+                        "wav"
+                    ]
+                },
+                "event_type": {
+                    "type": "string",
+                    "enum": [
+                        "EXTENSION",
+                        "OUTGOING_CALL",
+                        "INCOMING_CALL",
+                        "AUTOMATIC_TRANSFER",
+                        "AUTOMATIC_RECORD",
+                        "EXTENSION_TRANSFER",
+                        "OUTGOING_TRANSFER"
+                    ]
+                },
+                "groupname": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "queue_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "call_starts_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "call_answered_at": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    ]
+                },
+                "call_ends_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "circuit_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "audio_channel_type": {
+                    "type": "string",
+                    "enum": [
+                        "MONAURAL",
+                        "STEREO"
+                    ]
+                },
+                "participants": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Participant"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Tag"
+                    }
+                }
+            },
+            "required": [
+                "audio_channel_type",
+                "audio_file_type",
+                "call_answered_at",
+                "call_data_id",
+                "call_ends_at",
+                "call_starts_at",
+                "event_type",
+                "participants"
+            ],
+            "title": "CallDatum"
+        },
+        "Participant": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "FROM",
+                        "TO"
+                    ]
+                },
+                "stereo_lr": {
+                    "type": "string",
+                    "enum": [
+                        "left",
+                        "right"
+                    ]
+                },
+                "miitel_user_id": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    ]
+                },
+                "number": {
+                    "type": "string",
+                    "pattern": "(^[+*#0-9][0-9]*$)|(^Anonymous$)"
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "miitel_user_id",
+                "name",
+                "number",
+                "stereo_lr",
+                "type"
+            ],
+            "title": "Participant"
+        },
+        "Tag": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "value"
+            ],
+            "title": "Tag"
+        }
+    }
+}

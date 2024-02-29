@@ -1,0 +1,208 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome",
+    "definitions": {
+        "Welcome": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "call": {
+                    "$ref": "#/definitions/Call"
+                }
+            },
+            "required": [
+                "call"
+            ],
+            "title": "Welcome"
+        },
+        "Call": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "tenant_code": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Detail"
+                    }
+                }
+            },
+            "required": [
+                "id",
+                "tenant_code",
+                "details"
+            ],
+            "title": "Call"
+        },
+        "Detail": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "dial_starts_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "dial_answered_at": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time"
+                },
+                "dial_ends_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "queueing_starts_at": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time"
+                },
+                "queueing_answered_at": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time"
+                },
+                "queueing_ends_at": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time"
+                },
+                "call_type": {
+                    "type": "string",
+                    "enum": [
+                        "EXTENSION",
+                        "EXTENSION_GROUP",
+                        "OUTGOING_CALL",
+                        "PREDICTIVE_DIAL",
+                        "INCOMING_CALL",
+                        "INCOMING_CALL_USER",
+                        "QUEUEING_CALL",
+                        "AUTOMATIC_TRANSFER",
+                        "EXTENSION_TRANSFER",
+                        "EXTENSION_GROUP_TRANSFER",
+                        "AUTOMATIC_RECORD",
+                        "OUTGOING_TRANSFER"
+                    ]
+                },
+                "circuit_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "circuit_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "from_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "to_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "previous_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "uuid"
+                },
+                "participants": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Participant"
+                    }
+                },
+                "minutes": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "call_type",
+                "circuit_name",
+                "circuit_number",
+                "dial_answered_at",
+                "dial_ends_at",
+                "dial_starts_at",
+                "from_number",
+                "id",
+                "participants",
+                "previous_id",
+                "queueing_answered_at",
+                "queueing_ends_at",
+                "queueing_starts_at",
+                "to_number",
+                "minutes"
+            ],
+            "title": "Detail"
+        },
+        "Participant": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "from_to": {
+                    "type": "string",
+                    "enum": [
+                        "FROM",
+                        "TO"
+                    ]
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "company_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "login_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "email"
+                }
+            },
+            "required": [
+                "company_name",
+                "from_to",
+                "id",
+                "name"
+            ],
+            "title": "Participant"
+        }
+    }
+}

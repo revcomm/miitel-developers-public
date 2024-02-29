@@ -1,0 +1,190 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome",
+    "definitions": {
+        "Welcome": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "video": {
+                    "$ref": "#/definitions/Video"
+                }
+            },
+            "required": [
+                "video"
+            ],
+            "title": "Welcome"
+        },
+        "Video": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "tenant_code": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "platform": {
+                    "type": "string",
+                    "enum": [
+                        "miitel",
+                        "zoom",
+                        "google_meet",
+                        "microsoft_teams",
+                        "user_uploads",
+                        "rec_pod"
+                    ]
+                },
+                "starts_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ends_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "access_permission": {
+                    "type": "string",
+                    "enum": [
+                        "HOST",
+                        "EVERYONE"
+                    ]
+                },
+                "host": {
+                    "$ref": "#/definitions/Host"
+                },
+                "analysis": {
+                    "$ref": "#/definitions/Analysis"
+                },
+                "participants": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Participant"
+                    }
+                },
+                "speech_recognition": {
+                    "$ref": "#/definitions/SpeechRecognition"
+                }
+            },
+            "required": [
+                "access_permission",
+                "analysis",
+                "ends_at",
+                "host",
+                "id",
+                "participants",
+                "platform",
+                "speech_recognition",
+                "starts_at",
+                "tenant_code",
+                "title"
+            ],
+            "title": "Video"
+        },
+        "Analysis": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "overlap_count": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "silence_count": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "overlap_count",
+                "silence_count"
+            ],
+            "title": "Analysis"
+        },
+        "Host": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "user_name": {
+                    "type": "string"
+                },
+                "login_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "email"
+                }
+            },
+            "required": [
+                "login_id",
+                "user_name"
+            ],
+            "title": "Host"
+        },
+        "Participant": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "display_name": {
+                    "type": "string"
+                },
+                "miitel_user_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "login_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "email"
+                }
+            },
+            "required": [
+                "display_name",
+                "id",
+                "login_id",
+                "miitel_user_name"
+            ],
+            "title": "Participant"
+        },
+        "SpeechRecognition": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "raw": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "summary": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "raw",
+                "summary"
+            ],
+            "title": "SpeechRecognition"
+        }
+    }
+}

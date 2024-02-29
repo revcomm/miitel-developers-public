@@ -1,0 +1,50 @@
+{
+    "call": {
+        "id": "73578620-476d-4ae1-93c4-ba911ab4a14c",
+        "tenant_code": "tyo101-stg",
+        "details": [
+            {
+                "id": "73578620-476d-4ae1-93c4-ba911ab4a14c",
+                "dial_starts_at": "2023-11-28T07:26:06+00:00",
+                "dial_answered_at": null,
+                "dial_ends_at": "2023-11-28T07:26:11+00:00",
+                "queueing_starts_at": null,
+                "queueing_answered_at": null,
+                "queueing_ends_at": null,
+                "call_type": "OUTGOING_CALL",
+                "circuit_number": "05054430368",
+                "circuit_name": "05054430368",
+                "from_number": null,
+                "to_number": "09050815047",
+                "previous_id": null,
+                "dtmf": null,
+                "analysis": null,
+                "participants": [
+                    {
+                        "id": "018c14d2-2e10-c314-040e-694a1a26d1d6",
+                        "from_to": "FROM",
+                        "name": "masahiro.matsushita",
+                        "company_name": null,
+                        "analysis": null
+                    },
+                    {
+                        "id": "018c14d2-2e10-2446-420b-df78daad7515",
+                        "from_to": "TO",
+                        "name": null,
+                        "company_name": null,
+                        "analysis": null
+                    }
+                ],
+                "tags": [],
+                "comments": [],
+                "keywords": [],
+                "phrases": [],
+                "speech_recognition": {
+                    "raw": "",
+                    "summary": ""
+                }
+            }
+        ]
+    },
+    "ip_restricted": true
+}
