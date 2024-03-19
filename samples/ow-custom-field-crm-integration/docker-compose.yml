@@ -1,0 +1,29 @@
+version: "3"
+services:
+  welfaredesk_api:
+    build: .
+    volumes:
+      - "$PWD/app:/usr/src/app/app"
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+      - $HOME/.aws/config:/root/.aws/config:ro
+    ports:
+      - 5000:5000
+    command:
+      [
+        "uvicorn",
+        "app.main:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "5000",
+        "--reload",
+        "--reload-dir",
+        "app",
+      ]
+    environment:
+      - TZ=Asia/Tokyo
+      - LC_CTYPE=C.UTF-8
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - ./app/envs/.env.local

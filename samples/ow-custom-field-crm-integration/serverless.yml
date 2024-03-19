@@ -1,0 +1,123 @@
+service: ow-custom-field-crm-api
+
+plugins:
+  - serverless-certificate-creator
+  - serverless-python-requirements
+  - serverless-wsgi
+  - serverless-domain-manager
+  - serverless-add-api-key
+  - serverless-dotenv-plugin
+  - serverless-prune-plugin
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  domains:
+    dev: ow-custom-field-crm-api.<your-dev-domain>
+    prod: ow-custom-field-crm-api.<your-prod-domain>
+  hostedZoneNames:
+    dev: <your-dev-domain>.
+    prod: <your-prod-domain>.
+  pythonRequirements:
+    dockerizePip: true
+    dockerFile: Dockerfile-SLS
+    usePipenv: false
+  apiKeys:
+    dev:
+      - name: OwCRMCustomFieldAPIDevKey
+        value: <your-api-key-dev>
+    prod:
+      - name: OwCRMCustomFieldAPIProdKey
+        value: <your-api-key-prod>
+  wsgi:
+    app: app.main:app
+    packRequirements: false
+  customCertificate:
+    hostedZoneNames: ${self:custom.hostedZoneNames.${self:custom.stage}}
+    certificateName: ${self:custom.domains.${self:custom.stage}}
+    region: ${self:provider.region}
+  customDomain:
+    domainName: ${self:custom.domains.${self:custom.stage}}
+    certificateName: ${self:custom.domains.${self:custom.stage}}
+    basePath: "api"
+    endpointType: regional
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+    autoDomain: true
+  dotenv:
+    basePath: app/envs/
+provider:
+  name: aws
+  runtime: python3.10
+  region: ap-northeast-1
+  stage: ${opt:stage, 'dev'}
+  ecr:
+    images:
+      gpt-app-image:
+        path: ./gpt_app/
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - execute-api:Invoke
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - execute-api:ManageConnections
+      Resource: "*"
+    - Effect: Allow
+      Action: batch:*
+      Resource: "arn:aws:batch:*"
+    - Effect: Allow
+      Action:
+        - ssm:*
+        - sns:*
+        - sqs:*
+        - sts:AssumeRole
+      Resource: "*"
+  timeout: 30
+
+
+package:
+  exclude:
+    - ./.vscode/
+    - ./envs/**
+    - ./notebooks/
+    - ./terraform/
+    - ./node_modules/
+    - ./tests/
+    - ./Dockerfile
+    - ./docker-compose.yml
+    - ./package.json
+    - ./package-lock.json
+    - ./poetry.lock
+    - ./pyproject.toml
+    - ./serverless.yml
+    - ./README.md
+    - ./.gitignore
+    - ./.venv
+
+functions:
+  application:
+    handler: app.main.handler
+    events:
+      - http:
+          path: /{path+}
+          method: ANY
+          cors: true
+  gpt-app:
+    image:
+      name: gpt-app-image
+    timeout: 900
+    memorySize: 1024
+    events:
+      - sqs:
+          arn: arn:aws:sqs:ap-northeast-1:<your-aws-account-id>:chatgpt-serverless-sqs
+          batchSize: 1
+
+
+resources:
+ Resources:
+   MyQueue:
+     Type: "AWS::SQS::Queue"
+     Properties:
+        VisibilityTimeout: 900
+        QueueName: "chatgpt-serverless-sqs"
