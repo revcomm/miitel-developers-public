@@ -37,7 +37,15 @@
                         "google_meet",
                         "microsoft_teams",
                         "user_uploads",
-                        "rec_pod"
+                        "rec_pod",
+                        "incoming_webhook"
+                    ]
+                },
+                "calendar_platform": {
+                    "type": "string",
+                    "enum": [
+                        "google",
+                        "microsoft"
                     ]
                 },
                 "starts_at": {
@@ -55,6 +63,10 @@
                         "EVERYONE"
                     ]
                 },
+                "crm_type": {
+                    "type": "string",
+                    "enum": ["salesforce"]
+                },
                 "host": {
                     "$ref": "#/definitions/Host"
                 },
@@ -69,6 +81,21 @@
                 },
                 "speech_recognition": {
                     "$ref": "#/definitions/SpeechRecognition"
+                },
+                "zoom_meeting": {
+                    "$ref": "#/definitions/ZoomMeeting"
+                },
+                "google_meet_meeting": {
+                    "$ref": "#/definitions/GoogleMeetMeeting"
+                },
+                "google_calendar_event": {
+                    "$ref": "#/definitions/GoogleCalendarEvent"
+                },
+                "microsoft_calendar_event": {
+                    "$ref": "#/definitions/MicrosoftCalendarEvent"
+                },
+                "salesforce_crm_data": {
+                    "$ref": "#/definitions/SalesforceCrmData"
                 }
             },
             "required": [
@@ -185,6 +212,69 @@
                 "summary"
             ],
             "title": "SpeechRecognition"
+        },
+        "ZoomMeeting": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": ["string", "null"]
+                },
+                "uuid": {
+                    "type": ["string", "null"],
+                    "format": "uuid"
+                }
+            },
+            "title": "ZoomMeeting"
+        },
+        "GoogleMeetMeeting": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "meetingCode": {
+                    "type": ["string", "null"]
+                }
+            },
+            "title": "GoogleMeetMeeting"
+        },
+        "GoogleCalendarEvent": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "eventId": {
+                    "type": ["string", "null"]
+                },
+                "iCalUId": {
+                    "type": ["string", "null"]
+                }
+            },
+            "title": "GoogleCalendarEvent"
+        },
+        "MicrosoftCalendarEvent": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "eventId": {
+                    "type": ["string", "null"]
+                },
+                "iCalUId": {
+                    "type": ["string", "null"]
+                }
+            },
+            "title": "MicrosoftCalendarEvent"
+        },
+        "SalesforceCrmData": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "activity_id": {
+                    "type": ["string", "null"]
+                },
+                "related_id": {
+                    "type": ["string", "null"]
+                }
+            },
+            "title": "SalesforceCrmData"
         }
     }
 }
