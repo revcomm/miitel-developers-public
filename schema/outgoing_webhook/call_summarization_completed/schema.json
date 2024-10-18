@@ -17,7 +17,7 @@
         },
         "Call": {
             "type": "object",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "id": {
                     "type": "string",
@@ -42,7 +42,7 @@
         },
         "Detail": {
             "type": "object",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "id": {
                     "type": "string",
@@ -163,7 +163,7 @@
         },
         "Participant": {
             "type": "object",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "id": {
                     "type": "string",

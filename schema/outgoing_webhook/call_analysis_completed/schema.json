@@ -17,7 +17,7 @@
         },
         "Call": {
             "type": "object",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "id": {
                     "type": "string",
@@ -42,7 +42,7 @@
         },
         "Detail": {
             "type": "object",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "id": {
                     "type": "string",
@@ -207,7 +207,7 @@
                 "object",
                 "null"
             ],
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "score": {
                     "type": "number"
@@ -304,7 +304,7 @@
         },
         "Participant": {
             "type": "object",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "id": {
                     "type": "string",
@@ -329,6 +329,13 @@
                         "null"
                     ]
                 },
+                "login_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "email"
+                },
                 "analysis": {
                     "$ref": "#/definitions/ParticipantAnalysis"
                 }
@@ -338,7 +345,8 @@
                 "company_name",
                 "from_to",
                 "id",
-                "name"
+                "name",
+                "login_id"
             ],
             "title": "Participant"
         },
@@ -347,7 +355,7 @@
                 "object",
                 "null"
             ],
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "f0": {
                     "type": "number"
