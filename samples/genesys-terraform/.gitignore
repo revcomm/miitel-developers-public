@@ -1,0 +1,14 @@
+.terraform/
+zip/
+*.tfstate
+*.tfstate.backup
+.venv/
+deployment_package/
+.python-version
+src/*
+!src/lambda_function.py
+!src/requirements.txt
+!src/libs/
+!src/call/
+bin/
+.terraform.lock.hcl
