@@ -1,0 +1,112 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Schema",
+    "definitions": {
+        "Schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "video_data": {
+                    "$ref": "#/definitions/VideoData"
+                }
+            },
+            "required": [
+                "video_data"
+            ],
+            "title": "Schema"
+        },
+        "VideoData": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "file_type": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "starts_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ends_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "external_id": {
+                    "type": "string"
+                },
+                "number_of_participants": {
+                    "type": "integer"
+                },
+                "channel_type": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Tag"
+                    }
+                },
+                "participants": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Participant"
+                    }
+                }
+            },
+            "required": [
+                "channel_type",
+                "ends_at",
+                "external_id",
+                "file_type",
+                "host",
+                "number_of_participants",
+                "participants",
+                "starts_at",
+                "tags",
+                "title"
+            ],
+            "title": "VideoData"
+        },
+        "Participant": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "miitel_user_id": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "stereo_lr": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "miitel_user_id",
+                "name",
+                "stereo_lr"
+            ],
+            "title": "Participant"
+        },
+        "Tag": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "value"
+            ],
+            "title": "Tag"
+        }
+    }
+}
